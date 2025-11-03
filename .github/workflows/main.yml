@@ -2,7 +2,7 @@ name: first_workflow
 on: workflow_dispatch 
 jobs: 
   first_job:
-    runs-on: ubuntu_latest
+    runs-on: ubuntu-latest
     steps: 
       - name: Print front-end
         run: echo "REACT js"
