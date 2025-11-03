@@ -1,0 +1,10 @@
+name: first_workflow
+on: workflow_dispatch 
+jobs: 
+  first_job:
+    runs-on: ubuntu_latest
+    steps: 
+      - name: Print front-end
+        run: echo "REACT js"
+      - name: Print back-end
+        run: echo "PHP"
