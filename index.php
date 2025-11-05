@@ -1,3 +1,8 @@
+
+<script>
+  console.log("Current path: '<?php echo $path; ?>'");
+</script>
+
 <?php
 $path = $_GET['path'] ?? '';
 
@@ -14,13 +19,12 @@ switch ($path) {
     case 'login':
         include 'login';
         break;
+        case 'register':
+        include 'register';
+        break;
     default:
         http_response_code(404);
         echo "<h1>404 - Page Not Found</h1>";
         break;
 }
 ?>
-
-<script>
-  console.log("Current path: '<?php echo $path; ?>'");
-</script>
