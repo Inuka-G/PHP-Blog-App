@@ -1,83 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <script src="styles.css"></script>
-    <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <title>Single Blog Post</title>
 </head>
-<body>
-<nav class="bg-white border-gray-200 dark:bg-gray-900">
-  <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-    <a href="https://flowbite.com/" class="flex items-center space-x-3 rtl:space-x-reverse">
-        <img src="https://freesvg.org/img/ftkwrite.png" class="h-8" alt="Flowbite Logo" />
-        <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Write and Rise</span>
-    </a>
-    <button data-collapse-toggle="navbar-default" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-default" aria-expanded="false">
-        <span class="sr-only">Open main menu</span>
-        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
-            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
-        </svg>
-    </button>
-    <div class="hidden w-full md:block md:w-auto" id="navbar-default">
-      <ul class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-        <li>
-          <a href="#" class="block py-2 px-3 text-white bg-blue-700 rounded-sm md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500" aria-current="page">Home</a>
-        </li>
-        <li>
-          <a href="#" class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
+<body class="bg-gray-100">
 
-            <img src="https://www.svgrepo.com/show/535298/circle-user.svg" alt="user" class="inline h-6 w-6 mr-1 rtl:ml-1"/>
-          </a>
-        </li>
-        
-      </ul>
+  <!-- Navbar -->
+  <nav class="bg-white border-gray-200 dark:bg-gray-900">
+    <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+      <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
+        <img src="https://freesvg.org/img/ftkwrite.png" class="h-8" alt="Logo" />
+        <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
+          Write and Rise
+        </span>
+      </a>
     </div>
+  </nav>
+
+  <!-- Blog Post Container -->
+  <div id="singlePostContainer" class="max-w-3xl mx-auto mt-10 p-6 bg-white rounded-lg shadow-md">
+    <p class="text-center text-gray-500">Loading post...</p>
   </div>
-</nav>
 
-<div class="w-full flex justify-center items-center bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
-    <div class="p-5 flex flex-col justify-center items-center">
-        <a href="#">
-            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology acquisitions 2021</h5>
-        </a>
-        <a href="#">
-            <img class="rounded-t-lg" src="https://cdn.stocksnap.io/img-thumbs/280h/maple-tree_DEMD7LUNBV.jpg" alt="" />
-        </a>
-        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400 justify-center p-10">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological orderbranch 'w/o_react' set up to track 'origin/w/o_react'.
-inukagunathilake@Inukas-MacBook-Air Php Blog % git add . && git commit -m "add html" && git push 
-Auto packing the repository in background for optimum performance.
-See "git help gc" for manual housekeeping.
-warning: The last gc run reported the following. Please correct the root cause
+  <script>
+    async function loadPost() {
+      // ✅ Get post ID from URL (e.g., singlepost.html?id=1)
+      const urlParams = new URLSearchParams(window.location.search);
+      const postId = urlParams.get('id');
+      console.log("Post ID:", postId);
 
- .github/workflows/main.yml |  10 ++++++++++
- 2 files changed, 10 insertions(+)
- delete mode 100644 .DS_Store
- create mode 100644 .github/workflows/main.yml
-inukagunathilake@Inukas-MacBook-Air Php Blog % git status
-On branch main
-Your branch is up to date with 'origin/main'.
+      const container = document.getElementById('singlePostContainer');
 
-nothing to commit, working tree clean
-inukagunathilake@Inukas-MacBook-Air Php Blog % git status
-On branch w/o_react
-Your branch is up to date with 'origin/w/o_r
-Delta compression using up to 8 threads
-Compressing objects: 100% (3/3), done.
-Writing objects: 100% (3/3), 1.71 KiB | 1.71 MiB/s, done.
-Total 3 (delta 1), reused 0 (delta 0), pack-reused 0
-remote: Resolving deltas: 100% (1/1), completed with 1 local object.
-To https://github.com/Inuka-G/PHP-Blog-App.git
-   714c101..49c2693  w/o_react -> w/o_react.</p>
-        <!-- <a href="#" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-            Read more
-             <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
-            </svg>
-        </a> -->
-    </div>
-</div>
+      if (!postId) {
+        container.innerHTML = `
+          <p class='text-center text-red-500 text-lg mt-10'>
+            ❌ No post ID provided.
+          </p>`;
+        return;
+      }
+
+      try {
+        // ✅ Fetch single post from backend API
+        const response = await fetch(`http://localhost/phpblog/api/getSinglePost.php?id=${postId}`);
+        const post = await response.json();
+        console.log("Fetched Post:", post);
+
+        if (post.error) {
+          container.innerHTML = `
+            <p class='text-center text-red-500 text-lg mt-10'>
+              ${post.error}
+            </p>`;
+          return;
+        }
+
+        // ✅ Render post content
+        container.innerHTML = `
+          <div class="flex flex-col items-center">
+            <h1 class="text-3xl font-bold mb-4 text-gray-900 text-center">${post.title}</h1>
+            <img src="${post.imageUrl}" alt="Post Image"
+                 class="rounded-lg mb-6 w-full max-h-[400px] object-cover" />
+            <p class="text-gray-700 text-justify leading-relaxed">${post.content}</p>
+            <a href="/"
+               class="mt-8 inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
+              ← Back to Home
+            </a>
+          </div>
+        `;
+
+      } catch (err) {
+        console.error("Error loading post:", err);
+        container.innerHTML = `
+          <p class='text-center text-red-500 text-lg mt-10'>
+            ❌ Failed to load post: ${err.message}
+          </p>`;
+
+      }
+    }
+
+    // Run on page load
+    loadPost();
+  </script>
 
 </body>
 </html>

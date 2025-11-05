@@ -3,13 +3,16 @@ $path = $_GET['path'] ?? '';
 
 switch ($path) {
     case '':
-        include 'home.php';
+        include 'home/index.html';
         break;
     case 'singlepost':
-        include 'singlepost.php';
+        include 'singlepost';
         break;
-    case 'createpost':
-        include 'createpost.php';
+    case 'createblog':
+        include 'createblog';
+        break;
+    case 'login':
+        include 'login';
         break;
     default:
         http_response_code(404);
