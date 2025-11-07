@@ -1,24 +1,37 @@
 // app.js
 
-const API_BASE = 'api';
+// Prefer absolute path so fetches work from any page under the site
+const API_BASE = '/phpblog/api';
 
 // Utility function to check if user is logged in
 function checkLogin() {
     const user = sessionStorage.getItem('user');
     if (user) {
         const userObj = JSON.parse(user);
-        document.getElementById('welcomeMessage').textContent = `Welcome, ${userObj.username}`;
-        document.getElementById('welcomeMessage').style.display = 'inline';
-        document.getElementById('loginLink').style.display = 'none';
-        document.getElementById('registerLink').style.display = 'none';
-        document.getElementById('editorLink').style.display = 'inline';
-        document.getElementById('logoutLink').style.display = 'inline';
+        const welcomeEl = document.getElementById('welcomeMessage');
+        if (welcomeEl) {
+            welcomeEl.textContent = `Welcome, ${userObj.username}`;
+            welcomeEl.style.display = 'inline';
+        }
+        const loginLink = document.getElementById('loginLink');
+        if (loginLink) loginLink.style.display = 'none';
+        const registerLink = document.getElementById('registerLink');
+        if (registerLink) registerLink.style.display = 'none';
+        const editorLink = document.getElementById('editorLink');
+        if (editorLink) editorLink.style.display = 'inline';
+        const logoutLink = document.getElementById('logoutLink');
+        if (logoutLink) logoutLink.style.display = 'inline';
     } else {
-        document.getElementById('welcomeMessage').style.display = 'none';
-        document.getElementById('loginLink').style.display = 'inline';
-        document.getElementById('registerLink').style.display = 'inline';
-        document.getElementById('editorLink').style.display = 'none';
-        document.getElementById('logoutLink').style.display = 'none';
+        const welcomeEl = document.getElementById('welcomeMessage');
+        if (welcomeEl) welcomeEl.style.display = 'none';
+        const loginLink = document.getElementById('loginLink');
+        if (loginLink) loginLink.style.display = 'inline';
+        const registerLink = document.getElementById('registerLink');
+        if (registerLink) registerLink.style.display = 'inline';
+        const editorLink = document.getElementById('editorLink');
+        if (editorLink) editorLink.style.display = 'none';
+        const logoutLink = document.getElementById('logoutLink');
+        if (logoutLink) logoutLink.style.display = 'none';
     }
 }
 
