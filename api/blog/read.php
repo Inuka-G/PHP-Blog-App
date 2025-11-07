@@ -5,7 +5,7 @@ include_once '../../config/database.php';
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
 
-    $query = "SELECT b.id, b.title, b.content, b.created_at, b.user_id, u.username 
+    $query = "SELECT b.id, b.title, b.content, b.created_at, b.user_id, u.username , b.image_url
               FROM blogPost b 
               JOIN user u ON b.user_id = u.id 
               WHERE b.id = ? 
@@ -28,7 +28,7 @@ if (isset($_GET['id'])) {
 }
 
 // No id provided: return all posts
-$query = "SELECT b.id, b.title, b.content, b.created_at, b.user_id, u.username 
+$query = "SELECT b.id, b.title, b.content, b.created_at, b.user_id, u.username ,b.image_url
           FROM blogPost b 
           JOIN user u ON b.user_id = u.id 
           ORDER BY b.created_at DESC";

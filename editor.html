@@ -4,31 +4,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editor - Blog App</title>
-    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- <link rel="stylesheet" href="styles.css"> -->
 </head>
 <body>
-    <header>
-        <h1>Blog App</h1>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="#" id="logoutLink">Logout</a>
-            <span id="welcomeMessage"></span>
-        </nav>
-    </header>
+    
+<header class="bg-red-700 text-white shadow">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+    <!-- Logo / Title -->
+    <h1 class="text-2xl md:text-3xl font-bold tracking-tight">
+      Blog<span class="text-blue-200">App</span>
+    </h1>
+
+    <!-- Navigation -->
+    <nav class="flex items-center space-x-6">
+      <a href="index.html" class="hover:text-blue-200 transition">Home</a>
+      <a href="login.html" id="loginLink" class="hover:text-blue-200 transition">Login</a>
+      <a href="register.html" id="registerLink" class="hover:text-blue-200 transition">Register</a>
+      <a href="editor.html" id="editorLink" class="hidden hover:text-blue-200 transition">New Post</a>
+      <a href="#" id="logoutLink" class="hidden hover:text-blue-200 transition">Logout</a>
+      <span id="welcomeMessage" class="hidden font-medium text-blue-100"></span>
+    </nav>
+  </div>
+</header>
     <main>
-        <form id="blogForm">
+        <form id="blogForm" class="w-1/2 flex flex-col gap-4 mx-auto my-10">
             <h2 id="formTitle">New Blog Post</h2>
-            <div>
-                <label for="title">Title:</label>
-                <input type="text" id="title" required>
+            <div class="">
+                <label for="title" class="block mb-2 text-sm font-medium text-gray-900">Title:</label>
+                <input type="text" id="title"  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " placeholder="John" required />
             </div>
-            <div>
-                <label for="content">Content (Markdown):</label>
-                <textarea id="content" rows="10" required></textarea>
+             <div class="">
+                <label for="image_url" class="block mb-2 text-sm font-medium text-gray-900">Image URL:</label>
+                <input type="text" id="image_url" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " placeholder="https://example.com/image.jpg" required />
             </div>
-            <button type="submit">Save</button>
+            <div class="">
+                <label for="content" class="block mb-2 text-sm font-medium text-gray-900">Content (Markdown):</label>
+                <textarea id="content" rows="10" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 " required></textarea>
+            </div>
+            <button class="bg-blue-500 text-white px-4 py-2 rounded" type="submit">Save</button>
         </form>
+
     </main>
+    <div class="hidden p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 w-1/3 absolute top-10 right-0 alert " role="alert"> Change a few things up and try submitting again.</div>
     <script src="app.js"></script>
+        
 </body>
 </html>

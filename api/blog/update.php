@@ -14,6 +14,7 @@ if (!empty($data->id) && !empty($data->title) && !empty($data->content)) {
     $id = $data->id;
     $title = $data->title;
     $content = $data->content;
+    $image_url = $data->image_url;
 
     // Check if the blog post belongs to the logged-in user
     $query = "SELECT user_id FROM blogPost WHERE id=:id";
@@ -34,11 +35,12 @@ if (!empty($data->id) && !empty($data->title) && !empty($data->content)) {
         exit;
     }
 
-    $updateQuery = "UPDATE blogPost SET title=:title, content=:content WHERE id=:id";
+    $updateQuery = "UPDATE blogPost SET title=:title, content=:content, image_url=:image_url WHERE id=:id";
     $updateStmt = $pdo->prepare($updateQuery);
 
     $updateStmt->bindParam(':title', $title);
     $updateStmt->bindParam(':content', $content);
+    $updateStmt->bindParam(':image_url', $image_url);
     $updateStmt->bindParam(':id', $id);
 
     if ($updateStmt->execute()) {
