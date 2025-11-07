@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <title>Single Blog Post</title>
+</head>
+<body class="bg-gray-100">
+
+  <!-- Navbar -->
+  <nav class="bg-white border-gray-200 dark:bg-gray-900">
+    <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+      <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
+        <img src="https://freesvg.org/img/ftkwrite.png" class="h-8" alt="Logo" />
+        <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
+          Write and Rise
+        </span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- Blog Post Container -->
+  <div id="singlePostContainer" class="max-w-3xl mx-auto mt-10 p-6 bg-white rounded-lg shadow-md">
+    <p class="text-center text-gray-500">Loading post...</p>
+  </div>
+
+  <script>
+    async function loadPost() {
+      // ✅ Get post ID from URL (e.g., singlepost.html?id=1)
+      const urlParams = new URLSearchParams(window.location.search);
+      const postId = urlParams.get('id');
+      console.log("Post ID:", postId);
+
+      const container = document.getElementById('singlePostContainer');
+
+      if (!postId) {
+        container.innerHTML = `
+          <p class='text-center text-red-500 text-lg mt-10'>
+            ❌ No post ID provided.
+          </p>`;
+        return;
+      }
+
+      try {
+        // ✅ Fetch single post from backend API
+        const response = await fetch(`http://localhost/phpblog/api/getSinglePost.php?id=${postId}`);
+        const post = await response.json();
+        console.log("Fetched Post:", post);
+
+        if (post.error) {
+          container.innerHTML = `
+            <p class='text-center text-red-500 text-lg mt-10'>
+              ${post.error}
+            </p>`;
+          return;
+        }
+
+        // ✅ Render post content
+        container.innerHTML = `
+          <div class="flex flex-col items-center">
+            <h1 class="text-3xl font-bold mb-4 text-gray-900 text-center">${post.title}</h1>
+            <img src="${post.imageUrl}" alt="Post Image"
+                 class="rounded-lg mb-6 w-full max-h-[400px] object-cover" />
+            <p class="text-gray-700 text-justify leading-relaxed">${post.content}</p>
+            <a href="/"
+               class="mt-8 inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
+              ← Back to Home
+            </a>
+          </div>
+        `;
+
+      } catch (err) {
+        console.error("Error loading post:", err);
+        container.innerHTML = `
+          <p class='text-center text-red-500 text-lg mt-10'>
+            ❌ Failed to load post: ${err.message}
+          </p>`;
+
+      }
+    }
+
+    // Run on page load
+    loadPost();
+  </script>
+
+</body>
+</html>
