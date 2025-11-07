@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog App</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Blog App</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="login.html" id="loginLink">Login</a>
+            <a href="register.html" id="registerLink">Register</a>
+            <a href="editor.html" id="editorLink" style="display:none;">New Post</a>
+            <a href="#" id="logoutLink" style="display:none;">Logout</a>
+            <span id="welcomeMessage" style="display:none;"></span>
+        </nav>
+    </header>
+    <main>
+        <div id="blogList"></div>
+    </main>
+    <script src="app.js"></script>
+</body>
+</html>
