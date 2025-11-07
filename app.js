@@ -176,7 +176,7 @@ function loadBlog(id) {
             const postMetaEl = document.getElementById('postMeta');
             if (postMetaEl) postMetaEl.textContent = `By ${blog.username} on ${new Date(blog.created_at).toLocaleDateString()}`;
             const postContentEl = document.getElementById('postContent');
-            if (postContentEl) postContentEl.textContent = blog.content;
+            if (postContentEl) postContentEl.innerHTML = marked.parse(blog.content);
 
             // Image: prefer postimg, then imageUrl, then image_url
             const imgSrc = blog.postimg || blog.imageUrl || blog.image_url || '';
