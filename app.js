@@ -318,7 +318,17 @@ function createBlog(title, content, image_url) {
         .then(response => response.json())
         .then(data => {
             if (data.message === 'Blog post was created.') {
-                window.location.href = 'index.html';
+                const alert = document.getElementsByClassName("alert")[0];
+                Object.assign(alert.style, {
+                    display: "block",
+                    color: "#166534",
+                    backgroundColor: "#f0fdf4"
+                });
+                alert.innerHTML = "Blog post created successfully.";
+                setTimeout(() => {
+                    alert.style.display = "none";
+                    window.location.href = 'index.html';
+                }, 2000);
             } else {
                 const alert = document.getElementsByClassName("alert")[0];
                 alert.style.display = "block";
@@ -416,9 +426,9 @@ function deleteBlog(id) {
                 alert.innerHTML = "Blog post deleted successfully.";
                 setTimeout(() => {
                     alert.style.display = "none";
+                    window.location.href = 'index.html';
                 }, 2000);
 
-                window.location.href = 'index.html';
             } else {
                 const alert = document.getElementsByClassName("alert")[0];
                 alert.style.display = "block";
