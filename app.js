@@ -145,7 +145,7 @@ function loadBlogs() {
       By ${blog.username} on ${new Date(blog.created_at).toLocaleDateString()}
     </p>
     <p class="mb-3 font-normal text-gray-700 text-wrap">
-      ${blog.content.substring(0, 100)}...
+      ${marked.parse(blog.content.substring(0, 100))}...
     </p>
     <a href="blog.html?id=${blog.id}" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-black rounded-lg hover:bg-blue-800">
       Read more
@@ -176,6 +176,7 @@ function loadBlog(id) {
             const postMetaEl = document.getElementById('postMeta');
             if (postMetaEl) postMetaEl.textContent = `By ${blog.username} on ${new Date(blog.created_at).toLocaleDateString()}`;
             const postContentEl = document.getElementById('postContent');
+            console.log(marked.parse(blog.content));
             if (postContentEl) postContentEl.innerHTML = marked.parse(blog.content);
 
             // Image: prefer postimg, then imageUrl, then image_url

@@ -1,227 +1,144 @@
-/* body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
+/* Markdown Content Styles */
+.markdown-body {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  line-height: 1.7;
+  color: #1f2937;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.08);
+  max-width: 900px;
+  margin: auto;
 }
 
-header {
-    
-    color: white;
-    padding: 1rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+/* Headings */
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+  font-weight: 700;
+  margin-top: 1.5em;
+  margin-bottom: 0.6em;
+  line-height: 1.2;
+  color: #111827;
 }
 
-header h1 {
-    margin: 0;
+.markdown-body h1 { font-size: 2em; border-bottom: 2px solid #e5e7eb; padding-bottom: 0.3em; }
+.markdown-body h2 { font-size: 1.7em; border-bottom: 1px solid #e5e7eb; padding-bottom: 0.3em; }
+.markdown-body h3 { font-size: 1.4em; }
+.markdown-body h4 { font-size: 1.2em; }
+.markdown-body h5 { font-size: 1.1em; }
+.markdown-body h6 { font-size: 1em; color: #6b7280; }
+
+/* Paragraphs */
+.markdown-body p {
+  margin: 1em 0;
 }
 
-nav a {
-    color: white;
-    margin-left: 1rem;
-    text-decoration: none;
+/* Bold / Italic / Strikethrough */
+.markdown-body strong { font-weight: bold; color: #111; }
+.markdown-body em { font-style: italic; color: #374151; }
+.markdown-body del { text-decoration: line-through; color: #9ca3af; }
+
+/* Links */
+.markdown-body a {
+  color: #2563eb;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.markdown-body a:hover {
+  color: #1e40af;
+  text-decoration: underline;
 }
 
-nav a:hover {
-    text-decoration: underline;
+/* Blockquotes */
+.markdown-body blockquote {
+  margin: 1em 0;
+  padding: 0.6em 1em;
+  border-left: 4px solid #3b82f6;
+  background-color: #f1f5f9;
+  color: #374151;
+  border-radius: 4px;
 }
 
-main {
-    padding: 2rem;
+/* Lists */
+.markdown-body ul,
+.markdown-body ol {
+  margin: 0.8em 0 0.8em 1.6em;
 }
 
-form {
-    max-width: 500px;
-    margin: 0 auto;
-    background: white;
-    padding: 2rem;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+.markdown-body li {
+  margin-bottom: 0.4em;
 }
 
-form div {
-    margin-bottom: 1rem;
+/* Code */
+.markdown-body code {
+  background-color: #f3f4f6;
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+  font-family: "JetBrains Mono", monospace;
+  color: #dc2626;
 }
 
-label {
-    display: block;
-    margin-bottom: 0.5rem;
+.markdown-body pre {
+  background-color: #111827;
+  color: #e5e7eb;
+  padding: 1em;
+  border-radius: 8px;
+  overflow-x: auto;
+  font-family: "JetBrains Mono", monospace;
 }
 
-input, textarea {
-    width: 100%;
-    padding: 0.5rem;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+.markdown-body pre code {
+  background: none;
+  color: inherit;
+  padding: 0;
 }
 
-button {
-    background-color: #333;
-    color: white;
-    border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
-    cursor: pointer;
+/* Tables */
+.markdown-body table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1.2em 0;
 }
 
-button:hover {
-    background-color: #555;
+.markdown-body th,
+.markdown-body td {
+  border: 1px solid #e5e7eb;
+  padding: 0.6em 1em;
+  text-align: left;
 }
 
-#blogList {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 1rem;
+.markdown-body th {
+  background-color: #f3f4f6;
+  font-weight: 600;
 }
 
-.blog-item {
-    background: white;
-    padding: 1rem;
-    border-radius: 5px;
-    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+/* Horizontal Rule */
+.markdown-body hr {
+  border: 0;
+  border-top: 1px solid #e5e7eb;
+  margin: 1.5em 0;
 }
 
-.blog-item h2 {
-    margin-top: 0;
+/* Images */
+.markdown-body img {
+  max-width: 100%;
+  border-radius: 8px;
+  margin: 1em 0;
+  display: block;
 }
 
-.blog-item a {
-    text-decoration: none;
-    color: #333;
+/* Task Lists */
+.markdown-body input[type="checkbox"] {
+  margin-right: 0.5em;
 }
 
-.blog-item a:hover {
-    text-decoration: underline;
-}
-
-#blogPost {
-    background: white;
-    padding: 2rem;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-}
-
-#postMeta {
-    color: #666;
-    font-style: italic;
-} */
-
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-
-* {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-	font-family: 'Poppins', sans-serif;
-}
-
-body {
-	background: #ddd;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	min-height: 100vh;
-}
-
-li {
-	margin-left: 16px;
-}
-
-a {
-	cursor: pointer;
-}
-
-
-
-
-.container {
-	max-width: 991px;
-	width: 100%;
-	background: #fff;
-	border-radius: 8px;
-	overflow: hidden;
-}
-.toolbar {
-	padding: 16px;
-	background: #eee;
-}
-.toolbar .head {
-	display: flex;
-	grid-gap: 10px;
-	margin-bottom: 16px;
-	flex-wrap: wrap;
-}
-.toolbar .head > input {
-	max-width: 100px;
-	padding: 6px 10px;
-	border-radius: 6px;
-	border: 2px solid #ddd;
-	outline: none;
-}
-.toolbar .head select {
-	background: #fff;
-	border: 2px solid #ddd;
-	border-radius: 6px;
-	outline: none;
-	cursor: pointer;
-}
-.toolbar .head .color {
-	background: #fff;
-	border: 2px solid #ddd;
-	border-radius: 6px;
-	outline: none;
-	cursor: pointer;
-	display: flex;
-	align-items: center;
-	grid-gap: 6px;
-	padding: 0 10px;
-}
-.toolbar .head .color span {
-	font-size: 14px;
-}
-.toolbar .head .color input {
-	border: none;
-	padding: 0;
-	width: 26px;
-	height: 26px;
-	background: #fff;
-	cursor: pointer;
-}
-.toolbar .head .color input::-moz-color-swatch {
-	width: 20px;
-	height: 20px;
-	border: none;
-	border-radius: 50%;
-}
-.toolbar .btn-toolbar {
-	display: flex;
-	flex-wrap: wrap;
-	align-items: center;
-	grid-gap: 10px;
-}
-.toolbar .btn-toolbar button {
-	background: #fff;
-	border: 2px solid #ddd;
-	border-radius: 6px;
-	cursor: pointer;
-	width: 40px;
-	height: 40px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	font-size: 18px;
-}
-.toolbar .btn-toolbar button:hover {
-	background: #f3f3f3;
-}
-#content {
-	padding: 16px;
-	outline: none;
-	max-height: 50vh;
-	overflow: auto;
-}
-#show-code[data-active="true"] {
-	background: #eee;
+/* Highlight */
+.markdown-body mark {
+  background-color: #fef08a;
+  padding: 0.1em 0.2em;
+  border-radius: 2px;
 }
