@@ -9,21 +9,42 @@
     <!-- <link rel="stylesheet" href="styles.css"> -->
 </head>
 <body>
-<header class="bg-red-700 text-white shadow">
+<header class="bg-[#146551] text-white shadow">
   <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
     <!-- Logo / Title -->
-    <h1 class="text-2xl md:text-3xl font-bold tracking-tight">
-      Blog<span class="text-blue-200">App</span>
-    </h1>
+     <a href="index.html">
+
+         <h1 class="text-2xl md:text-3xl font-bold tracking-tight">
+             Write &<span class="text-blue-200">Rise</span>
+            </h1>
+        </a>
 
     <!-- Navigation -->
     <nav class="flex items-center space-x-6">
-      <a href="index.html" class="hover:text-blue-200 transition">Home</a>
-      <a href="login.html" id="loginLink" class="hover:text-blue-200 transition">Login</a>
-      <a href="register.html" id="registerLink" class="hover:text-blue-200 transition">Register</a>
-      <a href="editor.html" id="editorLink" class="hidden hover:text-blue-200 transition">New Post</a>
-      <a href="#" id="logoutLink" class="hidden hover:text-blue-200 transition">Logout</a>
-      <span id="welcomeMessage" class="hidden font-medium text-blue-100"></span>
+      <a href="index.html" class="hover:text-blue-200 transition">
+        
+<button type="button" class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-[#265C4B] hover:text-white focus:z-10 focus:ring-4 focus:ring-gray-100 cursor-pointer ">Home</button>
+
+
+      </a>
+      <a href="login.html" id="loginLink" class="hover:text-blue-200 transition">
+
+        <button type="button" class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-[#265C4B] hover:text-white focus:z-10 focus:ring-4 focus:ring-gray-100 cursor-pointer">Login</button>
+
+      </a>
+      <a href="register.html" id="registerLink" class="hover:text-blue-200 transition">
+        <button type="button" class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-[#265C4B] hover:text-white focus:z-10 focus:ring-4 focus:ring-gray-100 cursor-pointer">Register</button>
+      </a>
+      <a href="editor.html" id="editorLink" class="hidden hover:text-blue-200 transition">
+        <button type="button" class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-[#265C4B] hover:text-white focus:z-10 focus:ring-4 focus:ring-gray-100 cursor-pointer">New Post</button>
+      </a>
+      <a href="#" id="logoutLink" class="hidden hover:text-blue-200 transition">
+        <button type="button" class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-[#265C4B] hover:text-white focus:z-10 focus:ring-4 focus:ring-gray-100 cursor-pointer">Logout</button>
+      </a>
+
+      <span id="welcomeMessage" class="hidden bg-green-100 text-green-800 text-xs font-medium me-2   rounded-sm dark:bg-green-900 dark:text-green-300 text-3xl p-2 px-4">Green</span>
+
+      <!-- <span  class="hidden font-medium text-blue-100"></span> -->
     </nav>
   </div>
 </header>
@@ -33,7 +54,7 @@
         <div id="blogList"></div>
     </main>
     <script src="app.js"></script>
-    <div class="hidden flex gap-2 p-4 mb-4 text-sm text-blue-800 rounded-lg bg-blue-50 w-1/3 absolute top-10 right-0 alert " role="alert">
+    <div class="hidden flex gap-2 p-4 mb-4 text-sm text-blue-800 rounded-lg bg-blue-50 w-1/3 fixed top-10 right-0 alert " role="alert">
 
   <span class="font-medium">Info alert!</span> Change a few things up and try submitting again.
 
@@ -49,7 +70,7 @@
 </div>
 
 
-<footer class="bg-white rounded-lg shadow-sm m-4 dark:bg-gray-800 absolute bottom-0 left-0 right-0">
+<footer class="bg-white rounded-lg shadow-sm m-4 dark:bg-gray-800 bottom-0 left-0 right-0">
     <div class="w-full mx-auto max-w-screen-xl p-4 md:flex md:items-center md:justify-center ">
       <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2025 <a href="https://inuka-g.github.io/" class="hover:underline">InukaG</a>. All Rights Reserved.
     </span>

@@ -1,7 +1,7 @@
 // app.js
 
 // Prefer absolute path so fetches work from any page under the site
-const API_BASE = '/phpblog/api';
+const API_BASE = 'api';
 
 // Utility function to check if user is logged in
 function checkLogin() {
@@ -95,7 +95,19 @@ document.addEventListener('DOMContentLoaded', function () {
         blogForm.addEventListener('submit', function (e) {
             e.preventDefault();
             const title = document.getElementById('title').value;
-            const content = document.getElementById('content').value;
+            // Prefer TipTap editor content if available
+            let content = '';
+            if (typeof window.tiptapEditor !== 'undefined') {
+                try {
+                    content = window.tiptapEditor.getHTML();
+                } catch (err) {
+                    // fallback to reading innerHTML of the editor container
+                    content = document.querySelector('#wysiwyg-example')?.innerHTML || '';
+                }
+            } else {
+                const contentEl = document.getElementById('content');
+                content = contentEl ? contentEl.value : document.querySelector('#wysiwyg-example')?.innerHTML || '';
+            }
             const image_url = document.getElementById('image_url').value;
             const urlParams = new URLSearchParams(window.location.search);
             const id = urlParams.get('id');
@@ -132,27 +144,33 @@ function loadBlogs() {
             blogs.forEach(blog => {
                 const blogItem = document.createElement('div');
                 blogItem.className = 'blog-item';
+                // prepare excerpt HTML safely
+                const excerptRaw = blog.content ? blog.content.substring(0, 300) : '';
+                const excerptParsed = (typeof marked !== 'undefined' && typeof marked.parse === 'function') ? marked.parse(excerptRaw) : excerptRaw;
+                const excerptSafe = (typeof DOMPurify !== 'undefined' && typeof DOMPurify.sanitize === 'function') ? DOMPurify.sanitize(excerptParsed) : excerptParsed;
                 blogItem.innerHTML = `
-                  <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm">
-  <a href="/phpblog/singleblog?id=${blog.id}">
+                  <div class="max-w-sm  bg-white border border-gray-200 rounded-lg shadow-sm flex flex-col">
+ <a href="blog.html?id=${blog.id}">
     <img class="rounded-t-lg w-full h-48 object-cover" src="${blog.image_url}" alt="${blog.title}" />
   </a>
   <div class="p-5 text-wrap">
-    <a href="/phpblog/singleblog?id=${blog.id}">
+  <a href="blog.html?id=${blog.id}">
       <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 ">${blog.title}</h5>
     </a>
     <p class="text-sm text-gray-500  mb-2">
       By ${blog.username} on ${new Date(blog.created_at).toLocaleDateString()}
     </p>
-    <p class="mb-3 font-normal text-gray-700 text-wrap">
-      ${marked.parse(blog.content.substring(0, 100))}...
+    <p class="mb-3 font-normal text-gray-700 text-wrap  ">
+                ${excerptSafe}...
     </p>
-    <a href="blog.html?id=${blog.id}" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-black rounded-lg hover:bg-blue-800">
-      Read more
-      <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
-      </svg>
-    </a>
+    <a href="blog.html?id=${blog.id}" class="flex">
+      
+      <button class="flex items-center py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-[#265C4B] hover:text-white focus:z-10 focus:ring-4 focus:ring-gray-100 cursor-pointer ">Read more<svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+      </svg></button>
+      
+      
+      </a>
   </div>
 </div>
 
@@ -174,10 +192,13 @@ function loadBlog(id) {
             const postTitleEl = document.getElementById('postTitle');
             if (postTitleEl) postTitleEl.textContent = blog.title;
             const postMetaEl = document.getElementById('postMeta');
-            if (postMetaEl) postMetaEl.textContent = `By ${blog.username} on ${new Date(blog.created_at).toLocaleDateString()}`;
+            if (postMetaEl) postMetaEl.textContent = `Created By ${blog.username} on ${new Date(blog.created_at).toLocaleDateString()} Updated on ${new Date(blog.updated_at).toLocaleDateString()} at ${new Date(blog.updated_at).toLocaleTimeString()}`;
             const postContentEl = document.getElementById('postContent');
-            console.log(marked.parse(blog.content));
-            if (postContentEl) postContentEl.innerHTML = marked.parse(blog.content);
+            // Parse Markdown to HTML and sanitize before inserting
+            const parsed = (typeof marked !== 'undefined' && typeof marked.parse === 'function') ? marked.parse(blog.content || '') : (blog.content || '');
+            const safeHtml = (typeof DOMPurify !== 'undefined' && typeof DOMPurify.sanitize === 'function') ? DOMPurify.sanitize(parsed) : parsed;
+            console.log(parsed);
+            if (postContentEl) postContentEl.innerHTML = safeHtml;
 
             // Image: prefer postimg, then imageUrl, then image_url
             const imgSrc = blog.postimg || blog.imageUrl || blog.image_url || '';
@@ -453,7 +474,7 @@ document.addEventListener('DOMContentLoaded', function () {
             .then(response => response.json())
             .then(blog => {
                 document.getElementById('title').value = blog.title;
-                document.getElementById('content').value = blog.content;
+                // document.getElementById('content').value = blog.content;
                 document.getElementById('image_url').value = blog.image_url;
             })
             .catch(error => {

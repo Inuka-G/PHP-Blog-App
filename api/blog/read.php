@@ -1,11 +1,16 @@
 <?php
+header("Access-Control-Allow-Origin: *");
+header("Content-Type: application/json; charset=UTF-8");
+header("Access-Control-Allow-Methods: POST, GET, PUT, DELETE");
+header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
+
 include_once '../../config/database.php';
 
 // If an ID is provided, return a single post; otherwise return the list
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
 
-    $query = "SELECT b.id, b.title, b.content, b.created_at, b.user_id, u.username , b.image_url
+    $query = "SELECT b.id, b.title, b.content, b.created_at, b.user_id, u.username , b.image_url,b.updated_at
               FROM blogPost b 
               JOIN user u ON b.user_id = u.id 
               WHERE b.id = ? 
@@ -28,7 +33,7 @@ if (isset($_GET['id'])) {
 }
 
 // No id provided: return all posts
-$query = "SELECT b.id, b.title, b.content, b.created_at, b.user_id, u.username ,b.image_url
+$query = "SELECT b.id, b.title, b.content, b.created_at, b.user_id, u.username ,b.image_url,b.updated_at
           FROM blogPost b 
           JOIN user u ON b.user_id = u.id 
           ORDER BY b.created_at DESC";
