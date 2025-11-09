@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog Post - Blog App</title>
+    <!-- <link rel="stylesheet" href="styles.css"> -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dompurify/dist/purify.min.js"></script>
+    <style>
+        /* Markdown Content Styles */
+/* .markdown-body {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  line-height: 1.7;
+  color: #1f2937;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.08);
+  max-width: 900px;
+  margin: auto;
+} */
+
+/* Headings */
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+  font-weight: 700;
+  margin-top: 1.5em;
+  margin-bottom: 0.6em;
+  line-height: 1.2;
+  color: #111827;
+}
+
+.markdown-body h1 { font-size: 2em; border-bottom: 2px solid #e5e7eb; padding-bottom: 0.3em; }
+.markdown-body h2 { font-size: 1.7em; border-bottom: 1px solid #e5e7eb; padding-bottom: 0.3em; }
+.markdown-body h3 { font-size: 1.4em; }
+.markdown-body h4 { font-size: 1.2em; }
+.markdown-body h5 { font-size: 1.1em; }
+.markdown-body h6 { font-size: 1em; color: #6b7280; }
+
+/* Paragraphs */
+.markdown-body p {
+  margin: 1em 0;
+}
+
+/* Bold / Italic / Strikethrough */
+.markdown-body strong { font-weight: bold; color: #111; }
+.markdown-body em { font-style: italic; color: #374151; }
+.markdown-body del { text-decoration: line-through; color: #9ca3af; }
+
+/* Links */
+.markdown-body a {
+  color: #2563eb;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.markdown-body a:hover {
+  color: #1e40af;
+  text-decoration: underline;
+}
+
+/* Blockquotes */
+.markdown-body blockquote {
+  margin: 1em 0;
+  padding: 0.6em 1em;
+  border-left: 4px solid #3b82f6;
+  background-color: #f1f5f9;
+  color: #374151;
+  border-radius: 4px;
+}
+
+/* Lists */
+.markdown-body ul,
+.markdown-body ol {
+  margin: 0.8em 0 0.8em 1.6em;
+}
+
+.markdown-body li {
+  margin-bottom: 0.4em;
+}
+
+/* Code */
+.markdown-body code {
+  background-color: #f3f4f6;
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+  font-family: "JetBrains Mono", monospace;
+  color: #dc2626;
+}
+
+.markdown-body pre {
+  background-color: #111827;
+  color: #e5e7eb;
+  padding: 1em;
+  border-radius: 8px;
+  overflow-x: auto;
+  font-family: "JetBrains Mono", monospace;
+}
+
+.markdown-body pre code {
+  background: none;
+  color: inherit;
+  padding: 0;
+}
+
+/* Tables */
+.markdown-body table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1.2em 0;
+}
+
+.markdown-body th,
+.markdown-body td {
+  border: 1px solid #e5e7eb;
+  padding: 0.6em 1em;
+  text-align: left;
+}
+
+.markdown-body th {
+  background-color: #f3f4f6;
+  font-weight: 600;
+}
+
+/* Horizontal Rule */
+.markdown-body hr {
+  border: 0;
+  border-top: 1px solid #e5e7eb;
+  margin: 1.5em 0;
+}
+
+/* Images */
+.markdown-body img {
+  max-width: 100%;
+  border-radius: 8px;
+  margin: 1em 0;
+  display: block;
+}
+
+/* Task Lists */
+.markdown-body input[type="checkbox"] {
+  margin-right: 0.5em;
+}
+
+/* Highlight */
+.markdown-body mark {
+  background-color: #fef08a;
+  padding: 0.1em 0.2em;
+  border-radius: 2px;
+}
+
+    </style>
+  </head>
+  <body>
+  <header class="bg-[#146551] text-white shadow">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+    <!-- Logo / Title -->
+     <a href="index.html">
+
+         <h1 class="text-2xl md:text-3xl font-bold tracking-tight">
+             Write &<span class="text-blue-200">Rise</span>
+            </h1>
+        </a>
+
+    <!-- Navigation -->
+    <nav class="flex items-center space-x-6">
+      <a href="index.html" class="hover:text-blue-200 transition">
+        
+<button type="button" class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-[#265C4B] hover:text-white focus:z-10 focus:ring-4 focus:ring-gray-100 cursor-pointer ">Home</button>
+
+
+      </a>
+      <a href="login.html" id="loginLink" class="hover:text-blue-200 transition">
+
+        <button type="button" class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-[#265C4B] hover:text-white focus:z-10 focus:ring-4 focus:ring-gray-100 cursor-pointer">Login</button>
+
+      </a>
+      <a href="register.html" id="registerLink" class="hover:text-blue-200 transition">
+        <button type="button" class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-[#265C4B] hover:text-white focus:z-10 focus:ring-4 focus:ring-gray-100 cursor-pointer">Register</button>
+      </a>
+      <a href="editor.html" id="editorLink" class="hidden hover:text-blue-200 transition">
+        <button type="button" class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-[#265C4B] hover:text-white focus:z-10 focus:ring-4 focus:ring-gray-100 cursor-pointer">New Post</button>
+      </a>
+      <a href="#" id="logoutLink" class="hidden hover:text-blue-200 transition">
+        <button type="button" class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-[#265C4B] hover:text-white focus:z-10 focus:ring-4 focus:ring-gray-100 cursor-pointer">Logout</button>
+      </a>
+
+      <span id="welcomeMessage" class="hidden bg-green-100 text-green-800 text-xs font-medium me-2   rounded-sm dark:bg-green-900 dark:text-green-300 text-3xl p-2 px-4">Green</span>
+
+      <!-- <span  class="hidden font-medium text-blue-100"></span> -->
+    </nav>
+  </div>
+</header>
+    <main>
+      <article id="blogPost">
+        <div class="flex flex-col items-center justify-center w-full pt-10">
+          <h1
+            class="text-3xl font-bold mb-4 text-gray-900 text-center"
+            id="postTitle"
+          ></h1>
+          <img
+            src="${post.imageUrl}"
+            alt="Post Image"
+            id="postImg"
+            class="rounded-lg mb-6 w-1/2 max-h-[400px] object-cover"
+          />
+          <p id="postMeta" class="m-5"></p>
+          <div id="postActions" style="display: none">
+            <button type="button" id="editButton" class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-black hover:bg-[#265C4B] hover:text-white focus:z-10 focus:ring-4 focus:ring-gray-100 cursor-pointer ">Edit</button>
+            <button type="button" id="deleteButton" class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-black hover:bg-red-700 hover:text-white focus:z-10 focus:ring-4 focus:ring-gray-100 cursor-pointer ">Delete</button>
+            <!-- <button id="editButton" class="bg-blue-50">Edit</button>
+            <button id="deleteButton">Delete</button> -->
+          </div>
+          <p
+            class="text-gray-700 text-justify leading-relaxed w-3/4 p-4 markdown-body"
+            id="postContent"
+          >
+            ${post.content}
+          </p>
+          <a
+            href="index.html"
+            class=""
+          >
+          <button type="button" id="" class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-full border  hover:bg-[#265C4B] hover:text-white focus:z-10 focus:ring-4 focus:ring-gray-100 cursor-pointer border-1 border-black">Back to Home</button>
+            
+          </a>
+          
+        </div>
+      </article>
+    </main>
+    <div class="hidden p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 w-1/3 fixed top-10 right-0 alert " role="alert">
+  <span class="font-medium">Info alert!</span> Change a few things up and try submitting again.
+</div>
+    <script src="app.js"></script>
+    <footer class="bg-white rounded-lg shadow-sm m-4 dark:bg-gray-800 ">
+    <div class="w-full mx-auto max-w-screen-xl p-4 md:flex md:items-center md:justify-center ">
+      <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2025 <a href="https://inuka-g.github.io/" class="hover:underline">InukaG</a>. All Rights Reserved.
+    </span>
+   
+    </div>
+</footer>
+  </body>
+</html>
